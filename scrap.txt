@@ -1,0 +1,39 @@
+#Powershell Execution Policy
+powershell -NoLogo -NonInteractive -ExecutionPolicy Bypass .\psinstallwrapper.ps1
+
+#Transfer Files RHEL
+scp source_file_name username@destination_host:destination_folder
+
+#Component - Modify install file and tag version
+
+cd wjb-netbackup/
+git checkout master
+git pull
+vim install_1.exp
+git commit -a -m "netbackup: update to add spawn install"
+git pushgit tag -m "0.0.16" 0.0.16
+git push --tags
+
+#Puppet file - Increment version number for latest module
+
+cd auspost-puppet/
+git checkout dev
+git pull 
+vim Puppetfile
+git commit -a -m "netbackup: Use version 0.0.16"
+git push
+
+#Dev Box: Merge Puppet Code from DEV to TEST
+
+Change dir: source/repo-puppet
+git checkout test 
+git pull
+git merge --no-ff origin/dev
+	
+You'll receive commit message: Add details about merge
+
+o to open file 
+Type: "Merge DEV to TEST: Netbackup Version Increment"
+esc :wq
+git push
+
