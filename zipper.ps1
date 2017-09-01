@@ -17,11 +17,9 @@ Try {
 Catch {
 
     #exitCode -errorDescription "SPARS_FAILURE: Issue with Zipper/Archiving function." -exitCode 1
-	#Whatever you're catching errors with
+    #Whatever you're catching errors with
 
     }
 }
-
-
 
 Zipper -zipfilename "$Archive\$strFileName.zip" -sourcedir "$DestinationTemp"
