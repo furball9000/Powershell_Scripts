@@ -1,0 +1,5 @@
+#Powershell Execution Policy
+powershell -NoLogo -NonInteractive -ExecutionPolicy Bypass .\psinstallwrapper.ps1
+
+
+
